@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+.row {
+    display: flex;
+    flex: 1;
+}
+.box {
+    flex: 1;
+    background-color: #7d022b;
+    border: 1px solid white;
+    aspect-ratio: 2 / 1; 
+}
