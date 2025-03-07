@@ -45,4 +45,8 @@ def compCompatibility(name1:str,name2:str):
 
 
 if __name__ == "__main__": 
+<<<<<<< HEAD
     print(compCompatibility(' ','pr e r na'))
+=======
+    print(compCompatibility('diya','rayhaan'))
+>>>>>>> 4bb015b45de3bf1c9d6cf1b0fd9dd19c9af2a2b7
