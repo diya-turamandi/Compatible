@@ -31,7 +31,7 @@ def calculate():
 
     except ValueError:
         flash("Oops!! Make sure you spell the Names correctly with no special characters!!", "error")
-        return render_template("pyar.html")
+        return render_template("pyaar.html")
 
 
 
