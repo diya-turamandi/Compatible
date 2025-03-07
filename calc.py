@@ -1,3 +1,5 @@
+import re
+
 def if_length_two(l1: list):
     for index, value in enumerate(l1):
         if len(str(value)) > 1:
@@ -9,11 +11,15 @@ def if_length_two(l1: list):
 
 
 def compCompatibility(name1:str,name2:str):
-    name1 : str = name1.lower()
-    name2 : str = name2.lower()
-    
+    name1 : str = name1.lower().strip().replace(" ", "")
+    name2 : str = name2.lower().strip().replace(" ", "")
+
+    # name1: str = re.sub(r"\s+", "", name1.lower())
+    # name2: str = re.sub(r"\s+", "", name2.lower())
+
+   
     if not (name1.isalpha() and name2.isalpha()):
-        return 0
+        raise ValueError
     dict = {}
     for i in name1 + 'loves' + name2 :
         if i not in dict :
@@ -38,5 +44,5 @@ def compCompatibility(name1:str,name2:str):
     return values[0]*10+values[1]
 
 
-if __name__ == "__main__":
-    print(compCompatibility('anay','prarthana'))
+if __name__ == "__main__": 
+    print(compCompatibility(' ana  y','pr e r na'))
