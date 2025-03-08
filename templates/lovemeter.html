@@ -15,11 +15,20 @@
         
         <div class="container">
             <div class="bubbly-text" style="position: relative;top: -30px;color: blueviolet;font-size: 27px;">Enter your names and let fate decide <br>your love story!🔮</div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							<p style="color:white">
+								{{message}}
+							</p>
+						{% endfor %}
+					{% endif %}
+			{% endwith %}
             
-            <form id="loveForm">
+            <form id="loveForm" method="POST">
                 <div class="input-group">
-                    <input type="text" id="name1" placeholder="You" required>
-                    <input type="text" id="name2" placeholder="them" required>
+                    <input type="text" id="name1" name="name1" placeholder="You" required>
+                    <input type="text" id="name2" name="name2" placeholder="them" required>
                 </div>
     
                 <button type="submit">Calculate Love!</button>
