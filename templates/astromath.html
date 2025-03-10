@@ -51,5 +51,35 @@
         <button class="btn"> Check Compatibility </button>
     </div>
 </div>
+<script>
+    document.querySelector('.btn').addEventListener('click', function() {
+        const yourSign = document.getElementById('yourSign').value;
+        const partnerSign = document.getElementById('partnerSign').value;
+
+        if (!yourSign || !partnerSign) {
+            alert("Please select both signs!");
+            return;
+        }
+
+        fetch('/astromath', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                your_sign: yourSign,
+                partner_sign: partnerSign
+            })
+        })
+        .then(response => response.json()) // Expecting JSON response
+        .then(data => {
+            document.getElementById("result").innerText = `Compatibility: ${data.percentage}%`;
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
+
+<!-- Add a div to display the result -->
+<p id="result"></p>
 </body>
 </html>

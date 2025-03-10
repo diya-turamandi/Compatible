@@ -45,6 +45,6 @@ def compCompatibility(name1:str,name2:str):
 
 
 if __name__ == "__main__": 
-    print(compCompatibility(name2=' aditya ',name1='diya'))
+    print(compCompatibility(name2=' pooja ',name1='aditya'))
 
 
