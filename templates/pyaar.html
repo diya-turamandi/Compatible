@@ -20,7 +20,21 @@
     </div>
     <div class="row">
         <div class="box"></div>
-        <div class="box" style="background-color: #d17283;"><span id="heart">❤</span></div>
+        <div class="box" style="background-color: #d17283;">
+            <a href="{{url_for('lovemeter')}}">
+                <div><button >Calculate</button>
+                </div>
+            </a>
+        
+            <a href="{{ url_for('astromath') }}">
+                <div>
+                    <button href="{{ url_for('astromath') }}">
+                        astromath
+                    </button>
+                </div>
+            </a>
+
+        </div>
         <div class="box"></div>
        
     </div>
@@ -30,18 +44,6 @@
         <span class="heart">❤</span>
     </div>
 
-    <a href="{{url_for('lovemeter')}}">
-        <div><button >Calculate</button>
-        </div>
-    </a>
-
-    <a href="{{ url_for('astromath') }}">
-        <div>
-            <button href="{{ url_for('astromath') }}">
-                astromath
-            </button>
-        </div>
-    </a>
 
  
 </body>
