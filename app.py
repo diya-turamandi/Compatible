@@ -27,8 +27,10 @@ def lovemeter():
     percentage = request.args.get('perc')
 
     if request.method == "POST":
-        name1 = request.form.get('name1')
-        name2 = request.form.get('name2')
+        data = request.get_json()
+        name1 = data.get('name1')
+        name2 = data.get('name2')
+
         return redirect(url_for('calculate', name1=name1, name2=name2, ftype="name"))
     
     return render_template("lovemeter.html", perc=percentage)
@@ -69,12 +71,14 @@ def calculate():
             name_collection.insert_one({"Name1": name1,
                                         "Name2": name2,
                                         "Percentage": percentage})
-            return redirect(url_for('lovemeter', perc=percentage))
+            print(percentage)
+            return jsonify({"percentage": percentage})
         
         if ftype == 'sign':
             name_collection.insert_one({"Sign1": name1,
                                         "Sign2": name2,
                                         "Percentage": percentage})
+            print(percentage)
             return jsonify({"percentage": percentage})
 
 
