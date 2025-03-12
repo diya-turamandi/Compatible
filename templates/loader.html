@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Loader</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8d7da;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+        .loader {
+            position: relative;
+            font-size: 33vh;
+            animation: rotateLoader 2s linear infinite;
+            color: #d17283; 
+        }
+        @keyframes rotateLoader {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .quote {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #721c24;
+            text-align: center;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">❤</div>
+    <p class="quote" id="quote">Loading love...</p>
+    
+    <script>
+        const quotes = [
+            "Love is patient, love is kind.",
+            "Spread love wherever you go.",
+            "The best thing to hold onto in life is each other.",
+            "Where there is love, there is life.",
+            "You are loved more than you know."
+        ];
+        
+        function changeQuote() {
+            const quoteElement = document.getElementById('quote');
+            let index = 0;
+            setInterval(() => {
+                quoteElement.textContent = quotes[index];
+                index = (index + 1) % quotes.length;
+            }, 3000);
+        }
+        
+        window.onload = changeQuote;
+    </script>
+</body>
+</html>
