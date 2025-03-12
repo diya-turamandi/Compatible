@@ -21,23 +21,26 @@
     <div class="row">
         <div class="box"></div>
         <div class="box" style="background-color: #d17283;">
-        <a href="{{url_for('lovemeter')}}">
-            <div><button >Calculate</button>
-            </div>
-        </a>
-    
-        <a href="{{ url_for('astromath') }}">
-            <div>
-                <button href="{{ url_for('astromath') }}">
-                    astromath
-                </button>
-            </div>
-        </a>
         </div>
         <div class="box"></div>
         
     </div>
-    <div class="bubbly-text">Geeky Nerdy <br>Pyaar
+    <div class="buttons">
+    <a href="{{url_for('lovemeter')}}">
+        <div><button >Calculate</button>
+        </div>
+    </a>
+
+    <a href="{{ url_for('astromath') }}">
+        <div>
+            <button href="{{ url_for('astromath') }}">
+                Astromath
+            </button>
+        </div>
+    </a>
+    </div>
+    <div class="bubbly-text">
+        Geeky Nerdy Pyaar
         <span class="heart">❤</span>
         <span class="heart">❤</span>
         <span class="heart">❤</span>

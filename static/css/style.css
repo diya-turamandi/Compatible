@@ -16,31 +16,21 @@ body {
 .box {
     flex: 1;
     background-color: #7d022b;
+    margin: auto;
+    align-content: center;
+    justify-content: center;
+    aspect-ratio: 2 / 1; 
+    width: 33vw;
+    height: 33vh;
     border: 1px solid white;
-    aspect-ratio: 2 / 1; 
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.row {
-    display: flex;
-    flex: 1;
-}
-.box {
-    flex: 1;
-    background-color: #7d022b;
-   
-    aspect-ratio: 2 / 1; 
 }
 #heart {
-    font-size: 100px;
+    font-size: 10vw;
     color: #7d022b;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%; 
+    height: 80%; 
     animation: pulse 1s infinite alternate ease-in-out;
 }
 
@@ -56,20 +46,31 @@ body {
 
 .bubbly-text {
     font-family: 'Baloo Bhai 2', cursive; 
-    font-size: 100px;
+    font-size: 8vh;
+    margin: auto;
     color: rgb(192, 137, 158);
     text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2); 
-    padding: 10px;
+    /* padding: 15vw; */
     font-weight: 1000;
-    line-height: 80px;
-    position: relative;
-    top: -420px;
+    line-height: 8vh;
+    position: absolute;
+    top: 42vh;
     text-align: center;
-    -webkit-text-stroke: 3px #7d022b;
+    align-self: center;
+    -webkit-text-stroke: 0.3vw #7d022b;
+    border-width: 1vh;
 }
+
+.buttons{
+    position: absolute;
+    top: 70vh;
+    text-align: center;
+    align-self: center;
+}
+
 .heart {
     position: absolute;
-    font-size: 50px; 
+    font-size: 5vw; 
     color: #d17283; 
     animation: floatingHearts 3s infinite ease-in-out;
     opacity: 0; 
@@ -99,7 +100,7 @@ body {
         opacity: 1;
     }
     100% {
-        transform: translateY(-150px) scale(1.2);
+        transform: translateY(-15vh) scale(1.2);
         opacity: 0;
     }
 }
@@ -157,15 +158,18 @@ input:focus {
 button {
     background: #b39ddb;
     color: white;
-    padding: 10px 20px;
+    padding: 1vh 2vw;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 4vh;
     cursor: pointer;
     transition: 0.3s;
-    margin-top: 10px;
+    height: 8vh;
+    margin: auto;
+    margin-top: 1vh;
     position: relative;
-    left: 170px;
+    justify-self: center;
+    align-self: center;
 }
 
 button:hover {
@@ -173,8 +177,9 @@ button:hover {
 }
 
 #result {
-    margin-top: 20px;
-    font-size: 18px;
+    position: relative;
+    margin-top: 10px;
+    font-size: 1.8vw;
     font-weight: bold;
 }
 #dab{
@@ -217,21 +222,23 @@ button:hover {
 }
 
 .tagline-container {
-    position: relative;
-    top: -370px;
-    width: 100%;
+    /* position: absolute; */
+    /* top: 5vh; */
+    width: 75%;
     padding: 10px;
-    left: 30px;
+    margin-bottom: 10px;
+    align-self: center;
     background: rgba(255, 255, 255, 0.1);
     background-color:rgba(255, 255, 255, 0.1) ;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
-    font-size: 20px;
+    font-size: 2vh;
     font-weight: bold;
     letter-spacing: 0;
     animation: glow 2s infinite alternate;
     font-family:  'Baloo Bhai 2', cursive;
     text-align: center;
+    border-radius: 15px;
 }
 
 @keyframes glow {
@@ -244,19 +251,20 @@ button:hover {
 }
 .container2 {
     background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    position: relative;
-    right: 120px;
+    padding: 3vw;
+    margin-top: 0px;
+    justify-self: center;
+    align-self: center;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     animation: glow 2s infinite alternate;
-    width: 1000px;
-    font-size: 20px;
+    width: 75%;
+    font-size: 2vh;
 }
 
 h2 {
-    margin-bottom: 20px;
+    margin-bottom: 2vh;
     text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff66ff;
     font-family:  'Baloo Bhai 2', cursive;
 }
@@ -282,14 +290,14 @@ option {
 
 .btn {
     display: block;
-    width: 180px;
+    width: 18vw;
     padding: 15px;
     margin-top: 20px;
     border: none;
     border-radius: 10px;
     background: linear-gradient(135deg, #ff00ff, #ff66ff);
     color: rgb(235, 199, 199);
-    font-size: 18px;
+    font-size: 1.5vw;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s ease;
@@ -311,10 +319,10 @@ option {
 }
 .body2 {
     display: flex;
-    height: 500px;
+    flex-direction: column;
+    height: 100vh;
     justify-content: center;
     align-items: center;
-    height: 200vh;
     background: linear-gradient(135deg, #1e1e30, #3b1c52, #6d1e76);
     color: white;
     font-family: 'Poppins', sans-serif;

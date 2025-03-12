@@ -60,6 +60,8 @@ def calculate():
     if not name1 or not name2:
         flash("Please enter both names!", "error")
         return redirect(url_for('lovemeter'))
+    # name1 and name2 will take from form
+    name1 = request.args.get('name1')  # Get from query para
     
     try:
         percentage = compCompatibility(name1, name2)
