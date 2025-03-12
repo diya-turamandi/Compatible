@@ -34,8 +34,10 @@
                 <button type="submit">Calculate Love!</button>
             </form>
         </div>
-        <p>{{ perc }}</p>
-            <p id="result"></p>
+
+        <p id="result"></p>
+
+            
             <div class="scroll-container">
                 <div class="scroll-text">
                     <p>Because Even Love Needs an Algorithm!</p>
@@ -47,5 +49,30 @@
                 </div>
             </div>
         </div>    
+
+        <script>
+            document.getElementById('loveForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent form from submitting traditionally
+                
+                const name1 = document.getElementById('name1').value;
+                const name2 = document.getElementById('name2').value;
+    
+                fetch('/lovemeter', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name1: name1,
+                        name2: name2
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("result").innerText = `${data.percentage}`;
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        </script>
 </body>
 </html>
