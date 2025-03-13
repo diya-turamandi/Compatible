@@ -51,6 +51,15 @@ def astromath():
     return render_template("astromath.html")
 
 
+@app.route('/loader')
+def loader():
+    return render_template("loader.html")
+
+@app.route('/result')
+def result():
+    return render_template("result.html")
+
+
 
 @app.route('/calc')
 def calculate():

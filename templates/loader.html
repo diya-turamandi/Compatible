@@ -60,7 +60,19 @@
             }, 3000);
         }
         
-        window.onload = changeQuote;
+        window.onload = () => {
+            changeQuote();
+
+            // Get names from URL
+            const params = new URLSearchParams(window.location.search);
+            const name1 = params.get("name1");
+            const name2 = params.get("name2");
+
+            // Redirect to the result page after 3 seconds
+            setTimeout(() => {
+                window.location.href = `/result?name1=${name1}&name2=${name2}`;
+            }, 3000);
+        };
     </script>
 </body>
 </html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Result</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>💖 Your Love Compatibility Score 💖</h1>
+        <p style="font-size: 30px; color: red;" id="percentage">Loading...</p>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const params = new URLSearchParams(window.location.search);
+            const name1 = params.get("name1");
+            const name2 = params.get("name2");
+
+            if (name1 && name2) {
+                fetch(`/calc?name1=${name1}&name2=${name2}&ftype=name`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("percentage").innerText = `Love Percentage: ${data.percentage}%`;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        document.getElementById("percentage").innerText = "Error fetching result!";
+                    });
+            } else {
+                document.getElementById("percentage").innerText = "Invalid names!";
+            }
+        };
+    </script>
+</body>
+</html>

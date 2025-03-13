@@ -52,27 +52,14 @@
 
         <script>
             document.getElementById('loveForm').addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent form from submitting traditionally
-                
-                const name1 = document.getElementById('name1').value;
-                const name2 = document.getElementById('name2').value;
-    
-                fetch('/lovemeter', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name1: name1,
-                        name2: name2
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("result").innerText = `${data.percentage}`;
-                })
-                .catch(error => console.error('Error:', error));
-            });
+            event.preventDefault(); // Prevent default form submission
+
+            const name1 = encodeURIComponent(document.getElementById('name1').value);
+            const name2 = encodeURIComponent(document.getElementById('name2').value);
+
+            // Redirect to the loader page, passing names via URL parameters
+            window.location.href = `/loader?name1=${name1}&name2=${name2}`;
+        });
         </script>
 </body>
 </html>
