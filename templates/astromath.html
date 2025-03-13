@@ -61,22 +61,11 @@
             return;
         }
 
-        fetch('/astromath', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                your_sign: yourSign,
-                partner_sign: partnerSign
-            })
-        })
-        .then(response => response.json()) // Expecting JSON response
-        .then(data => {
-            document.getElementById("result").innerText = `Compatibility: ${data.percentage}%`;
-        })
-        .catch(error => console.error('Error:', error));
+        // Redirect to loader page with query params
+        const loaderUrl = `/loader?name1=${yourSign}&name2=${partnerSign}&ftype=sign`;
+        window.location.href = loaderUrl;
     });
+    
 </script>
 
 <!-- Add a div to display the result -->
