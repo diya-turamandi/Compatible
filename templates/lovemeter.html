@@ -8,13 +8,14 @@
 </head>
 <body>
     <div id="dab">
-        <div class="bubbly-text" style="position: relative;top: 20px;color: blueviolet;font-size: 40px;background-color: #b39ddb;">Love is in the air... but how much? <br> Let's find out!🐾
+        
+        <div class="bubbly-text" style="position: relative;top: -25vh;color: blueviolet;font-size: 40px;background-color: #b39ddb;">Love is in the air... but how much? <br> Let's find out!🐾
             <span class="heart">❤</span>
             <span class="heart">❤</span>
             <span class="heart">❤</span></div>
         
         <div class="container">
-            <div class="bubbly-text" style="position: relative;top: -30px;color: blueviolet;font-size: 27px;">Enter your names and let fate decide <br>your love story!🔮</div>
+            <div class="bubbly-text" style="position: relative;top: -3vh;color: blueviolet;font-size: 27px;">Enter your names and let fate decide <br>your love story!🔮</div>
             {% with messages = get_flashed_messages(with_categories=true) %}
 					{% if messages %}
 						{% for category, message in messages %}
@@ -31,7 +32,7 @@
                     <input type="text" id="name2" name="name2" placeholder="them" required>
                 </div>
     
-                <button type="submit">Calculate Love!</button>
+                <button type="submit" style="position: relative;left: 20vw;">Calculate Love!</button>
             </form>
         </div>
 
@@ -48,6 +49,8 @@
                     <p>~XOXO</p>
                 </div>
             </div>
+            
+            
         </div>    
 
         <script>
@@ -61,5 +64,6 @@
             window.location.href = `/loader?name1=${name1}&name2=${name2}`;
         });
         </script>
+        
 </body>
 </html>
