@@ -293,7 +293,6 @@ option {
 
 .btn {
     display: block;
-    width: 18vw;
     padding: 15px;
     margin-top: 20px;
     border: none;
@@ -312,12 +311,74 @@ option {
     box-shadow: 0 0 15px #ff66ff;
 }
 
+#calc{
+    display: block;
+    padding: 15px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ff00ff, #ff66ff);
+    color: rgb(235, 199, 199);
+    font-size: 1.5vw;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    animation: glow 2s infinite alternate;
+}
+
+.calc:hover {
+    background: linear-gradient(135deg, #ff66ff, #ff00ff);
+    box-shadow: 0 0 15px #ff66ff;
+}
+
+#popup{
+    font-family:  'Baloo Bhai 2', cursive;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3vw;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    animation: glowpop 2s infinite alternate;
+    font-size: 2vh;
+    font-weight: bold;
+}
+#popup > input{
+    width: 100%;
+}
+#closePopup{
+    position: relative;
+    top: -120px;
+    left: 130px;
+    height: 5vh;
+    width:5vh;
+    background-color: #e6005c;
+    border: #1e1e30;
+    border-radius: 10px;
+    padding: 0;
+    color: #1e1e30;
+}
+#closePopup:hover{
+    background-color: #1e1e30;
+    color: #e6005c;
+}
+
 @keyframes glow {
     0% {
         box-shadow: 0 0 10px #ff00ff;
     }
     100% {
         box-shadow: 0 0 20px #ff66ff;
+    }   
+}
+@keyframes glowpop {
+    0% {
+        box-shadow: 0 0 10px #00ff3c;
+    }
+    100% {
+        box-shadow: 0 0 20px #66ff87;
     }   
 }
 .body2 {

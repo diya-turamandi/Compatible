@@ -49,10 +49,48 @@
         </select>
 
         <button class="btn"> Check Compatibility </button>
+        <button id="calc">(Unaware of yours or your Partners Star Sign?)</button>
     </div>
-    <p id="result"></p>
+    <div id="popup">
+        Enter the Birth Date To find Star Sign: <input type="date" id="dob">
+        <button id="closePopup">X</button>
+        <button id = "astro">Find Star Sign</button>
+        <p id="result"></p>
     </div>
+</div>
 <script>
+    /*code for popup card*/
+    var astro = document.getElementById('calc');
+    var closepopup = document.getElementById('closePopup');
+    var popup = document.getElementById('popup');
+    var urlsearch = window.location.search;
+    if(urlsearch){
+        const starsign = urlsearch.split("=")[1]
+        document.getElementById("result").innerText = `Star Sign: ${starsign}`;
+        popup.style.display = 'flex';
+    } else {
+        document.getElementById("result").innerText = "Error fetching result!";
+    }
+    
+    astro.addEventListener('click', () =>{
+        popup.style.display = 'flex';
+    });
+    closepopup.addEventListener('click', ()=>{
+        popup.style.display = 'none';
+    });
+
+    document.querySelector('#astro').addEventListener('click', function() {
+        const DOB = document.getElementById('dob').value;
+
+        if(!DOB){
+            return;
+        }
+
+        const astroUrl = `/astromath?dob=${DOB}`;
+        window.location.href = astroUrl;
+    });
+
+    /*--------------*/ 
     document.querySelector('.btn').addEventListener('click', function() {
         const yourSign = document.getElementById('yourSign').value;
         const partnerSign = document.getElementById('partnerSign').value;

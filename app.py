@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from flask import Flask, render_template, flash, url_for, request, session, redirect, jsonify
 from calc import compCompatibility
-
+from astro import calcStarSign as astro
 
 app = Flask(__name__, template_folder='templates')
 
@@ -46,7 +46,15 @@ def astromath():
         sign2 = data.get('partner_sign')
         # print(sign1, sign2)
         return redirect(url_for('calculate', name1=sign1, name2=sign2, ftype="sign"))
-
+    elif request.method == "GET":
+        if not(request.args.get('dob')):
+            return render_template("astromath.html")
+        
+        dateog = request.args.get('dob')
+        date = dateog.split('-')
+        print(date)
+        sign = astro(int(date[1]),int(date[2]))
+        return redirect(url_for('astromath', starsign = sign))
 
     return render_template("astromath.html")
 
@@ -71,8 +79,6 @@ def calculate():
     if not name1 or not name2:
         flash("Please enter both names!", "error")
         return redirect(url_for('lovemeter'))
-    # name1 and name2 will take from form
-    name1 = request.args.get('name1')  # Get from query para
     
     try:
         percentage = compCompatibility(name1, name2)

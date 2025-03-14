@@ -4,10 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Result</title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <!-- <link rel="stylesheet" href="static/css/style.css"> -->
 </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f8d7da;
+        flex-direction: column;
+        font-family: Arial, sans-serif;
+    }
+    div{
+        text-align: center;
+    }
+</style>
 <body>
-    <div class="container">
+    <div>
         <h1>💖 Your Love Compatibility Score 💖</h1>
         <p style="font-size: 30px; color: red;" id="percentage">Loading...</p>
     </div>
@@ -22,7 +41,8 @@
                 fetch(`/calc?name1=${name1}&name2=${name2}&ftype=name`)
                     .then(response => response.json())
                     .then(data => {
-                        document.getElementById("percentage").innerText = `Love Percentage: ${data.percentage}%`;
+                        document.getElementById("percentage").innerText = `${name1} and ${name2}
+                        Love Percentage: ${data.percentage}%`;
                     })
                     .catch(error => {
                         console.error('Error:', error);
