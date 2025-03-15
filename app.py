@@ -69,7 +69,7 @@ def result():
     return render_template("result.html")
 
 
-@app.route('oops', methods=["GET", "POST"])
+@app.route('/oops', methods=["GET", "POST"])
 def oops():
     if request.method == "POST":
         pass
