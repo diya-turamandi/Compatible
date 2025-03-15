@@ -67,10 +67,11 @@
             const params = new URLSearchParams(window.location.search);
             const name1 = params.get("name1");
             const name2 = params.get("name2");
+            const ftype = params.get("ftype")
 
             // Redirect to the result page after 3 seconds
             setTimeout(() => {
-                window.location.href = `/result?name1=${name1}&name2=${name2}`;
+                window.location.href = `/result?name1=${name1}&name2=${name2}&ftype=${ftype}`;
             }, 10000);
         };
     </script>

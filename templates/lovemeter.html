@@ -16,16 +16,9 @@
         
         <div class="container">
             <div class="bubbly-text" style="position: relative;top: -3vh;color: blueviolet;font-size: 27px;">Enter your names and let fate decide <br>your love story!🔮</div>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-					{% if messages %}
-						{% for category, message in messages %}
-							<p style="color:white">
-								{{message}}
-							</p>
-						{% endfor %}
-					{% endif %}
-			{% endwith %}
             
+			<p id="err_msg"style="color:white"></p>
+						
             <form id="loveForm" method="POST">
                 <div class="input-group">
                     <input type="text" id="name1" name="name1" placeholder="You" required>
@@ -36,9 +29,6 @@
             </form>
         </div>
 
-        <p id="result"></p>
-
-            
             <div class="scroll-container">
                 <div class="scroll-text">
                     <p>Because Even Love Needs an Algorithm!</p>
@@ -55,14 +45,21 @@
 
         <script>
             document.getElementById('loveForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const name1 = encodeURIComponent(document.getElementById('name1').value);
-            const name2 = encodeURIComponent(document.getElementById('name2').value);
-
-            // Redirect to the loader page, passing names via URL parameters
-            window.location.href = `/loader?name1=${name1}&name2=${name2}`;
-        });
+                event.preventDefault(); // Prevent default form submission
+        
+                const name1 = document.getElementById('name1').value.trim();
+                const name2 = document.getElementById('name2').value.trim();
+                const result = document.getElementById('err_msg');
+                const nameRegex = /^[A-Za-z\s]+$/; // Only alphabets allowed
+        
+                if (!nameRegex.test(name1) || !nameRegex.test(name2)) {
+                    result.innerHTML = "<span style='color: red;'>Oops!! Make sure you spell the Names correctly with no special characters!!</span>";
+                    return; // Stop execution
+                }
+        
+                // Redirect to the loader page, passing names via URL parameters
+                window.location.href = `/loader?name1=${encodeURIComponent(name1)}&name2=${encodeURIComponent(name2)}&ftype=name`;
+            });
         </script>
         
 </body>

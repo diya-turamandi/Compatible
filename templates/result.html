@@ -31,27 +31,48 @@
         <p style="font-size: 30px; color: red;" id="percentage">Loading...</p>
     </div>
 
+    <div style="margin-top: 100px;">
+        <a href="{{ url_for('index') }}">
+            <button>Home</button>
+        </a>
+    </div>
+
     <script>
         window.onload = () => {
-            const params = new URLSearchParams(window.location.search);
-            const name1 = params.get("name1");
-            const name2 = params.get("name2");
+        const params = new URLSearchParams(window.location.search);
+        const name1 = params.get("name1");
+        const name2 = params.get("name2");
+        const ftype = params.get("ftype");
 
-            if (name1 && name2) {
-                fetch(`/calc?name1=${name1}&name2=${name2}&ftype=name`)
-                    .then(response => response.json())
-                    .then(data => {
-                        document.getElementById("percentage").innerText = `${name1} and ${name2}
-                        Love Percentage: ${data.percentage}%`;
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        document.getElementById("percentage").innerText = "Error fetching result!";
-                    });
-            } else {
-                document.getElementById("percentage").innerText = "Invalid names!";
-            }
-        };
+        if (name1 && name2 && ftype) {
+            fetch(`/calc?name1=${name1}&name2=${name2}&ftype=${ftype}`)
+                .then(response => response.json())
+                .then(data => {
+                    let resultText = "";
+
+                    if (ftype === "name") {
+                        resultText = `${name1} and ${name2}
+                        Love Percentage: ${data.percentage_og}%
+                        
+                        ${name2} and ${name1}
+                        Love Percentage: ${data.percentage_rev}%`;
+                    } else if (ftype === "sign") {
+                        resultText = `${name1} and ${name2}
+                        Love Percentage: ${data.percentage_og}%`;
+                    } else {
+                        resultText = "Invalid type!";
+                    }
+
+                    document.getElementById("percentage").innerText = resultText;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById("percentage").innerText = "Error fetching result!";
+                });
+        } else {
+            document.getElementById("percentage").innerText = "Invalid names!";
+        }
+    };
     </script>
 </body>
 </html>

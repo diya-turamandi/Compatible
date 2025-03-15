@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import pandas as pd
 from flask import Flask, render_template, flash, url_for, request, session, redirect, jsonify
 from calc import compCompatibility
 from astro import calcStarSign as astro
@@ -68,6 +69,13 @@ def result():
     return render_template("result.html")
 
 
+@app.route('oops', methods=["GET", "POST"])
+def oops():
+    if request.method == "POST":
+        pass
+
+    return render_template("oops.html")
+
 
 @app.route('/calc')
 def calculate():
@@ -81,20 +89,20 @@ def calculate():
         return redirect(url_for('lovemeter'))
     
     try:
-        percentage = compCompatibility(name1, name2)
+        percentage_og = compCompatibility(name1, name2)
+        percentage_rev = compCompatibility(name2, name1)
         if ftype == 'name':
             name_collection.insert_one({"Name1": name1,
                                         "Name2": name2,
-                                        "Percentage": percentage})
-            print(percentage)
-            return jsonify({"percentage": percentage})
+                                        "Percentage": percentage_og})
+            return jsonify({"percentage_og": percentage_og,
+                            "percentage_rev": percentage_rev})
         
         if ftype == 'sign':
             name_collection.insert_one({"Sign1": name1,
                                         "Sign2": name2,
-                                        "Percentage": percentage})
-            print(percentage)
-            return jsonify({"percentage": percentage})
+                                        "Percentage": percentage_og})
+            return jsonify({"percentage_og": percentage_og})
 
 
 
