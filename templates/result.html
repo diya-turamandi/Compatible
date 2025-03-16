@@ -27,13 +27,13 @@
 </style>
 <body>
     <div>
-        <h1>💖 Your Love Compatibility Score 💖</h1>
-        <p style="font-size: 30px; color: red;" id="percentage">Loading...</p>
+        <p style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;font-size: 4vh; text-align: center; padding-bottom: 30px;"> Your Love <br>Compatibility Score 💖</p>
+        <p style="font-size: 30px; color: rgb(153, 49, 209);font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;" id="percentage" >Loading...</p>
     </div>
 
     <div style="margin-top: 100px;">
         <a href="{{ url_for('index') }}">
-            <button>Home</button>
+            <button style="color: #f8d7da;background-color: blueviolet;height: 40px;width: 70px;border-radius: 30px;">Home</button>
         </a>
     </div>
 
@@ -51,10 +51,10 @@
                     let resultText = "";
 
                     if (ftype === "name") {
-                        resultText = `${name1} and ${name2}
+                        resultText = `${name1} loves ${name2}
                         Love Percentage: ${data.percentage_og}%
                         
-                        ${name2} and ${name1}
+                        ${name2} loves ${name1}
                         Love Percentage: ${data.percentage_rev}%`;
                     } else if (ftype === "sign") {
                         resultText = `${name1} and ${name2}
