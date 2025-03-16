@@ -6,7 +6,7 @@
     <title>geeky</title>
     <link rel="stylesheet" href="static/css/style.css">
 </head>
-<body>
+<body style="background-color: #6d1e76;">
     <div class="body2">
     <div class="tagline-container">
          <h2>🔮Heavenly Match or Cosmic Clash? <br>Find Out Now! 🔮</h2>
@@ -74,9 +74,10 @@
     
     astro.addEventListener('click', () =>{
         popup.style.display = 'flex';
+        popup.style.animation = "pop ease-in 0.75s normal"
     });
     closepopup.addEventListener('click', ()=>{
-        popup.style.display = 'none';
+        popup.style.display = "none";        
     });
 
     document.querySelector('#astro').addEventListener('click', function() {
