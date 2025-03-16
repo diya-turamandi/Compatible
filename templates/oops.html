@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Input Page</title>
+    <title>Secure Login</title>
     <style>
         body {
             display: flex;
@@ -49,18 +49,40 @@
 <body>
 
     <div class="container">
-        <h2>oops</h2>
-        <input type="text" id="nameInput" placeholder="enter">
-        <button onclick="submitName()">Submit</button>
-        <p id="output"></p>
+        <h2>Enter Password</h2>
+        <input type="password" id="passwordInput" placeholder="Enter your password">
+        <button onclick="submitPassword()">Submit</button>
+        <p id="response"></p>
     </div>
 
     <script>
-        function submitName() {
-            const name = document.getElementById("nameInput").value;
-            
-            document.getElementById("output").innerText = name ? `You entered: ${name}` : "Please enter something!";
+        async function submitPassword() {
+        const password = document.getElementById("passwordInput").value;
+        if (!password) {
+            document.getElementById("response").innerText = "Please enter a password!";
+            return;
         }
+
+        const response = await fetch("/oops", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ password: btoa(password) })  // Encode password
+        });
+
+        if (response.ok && response.headers.get("Content-Type") === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+            // If the response is an Excel file, trigger a download
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = "output.xlsx";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else {
+            const data = await response.json();
+            document.getElementById("response").innerText = data.message;
+        }
+    }
     </script>
 
 </body>

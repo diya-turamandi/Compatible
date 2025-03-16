@@ -1,12 +1,20 @@
 from pymongo import MongoClient
 import pandas as pd
-from flask import Flask, render_template, flash, url_for, request, session, redirect, jsonify
+import bcrypt
+import base64
+from flask import Flask, render_template, flash, url_for, request, session, redirect, jsonify, send_file
+import io
+import xlsxwriter
 from calc import compCompatibility
 from astro import calcStarSign as astro
 
 app = Flask(__name__, template_folder='templates')
 
 app.secret_key = "mfl"
+
+users = {
+    "admin": bcrypt.hashpw(b"securepassword", bcrypt.gensalt()).decode()
+}
 
 
 client = MongoClient(
@@ -69,10 +77,42 @@ def result():
     return render_template("result.html")
 
 
-@app.route('oops', methods=["GET", "POST"])
+@app.route('/oops', methods=["GET", "POST"])
 def oops():
     if request.method == "POST":
-        pass
+        dat = name_collection.find_one({"pin": 123578946})
+        pswd = dat.get("pd").encode()
+        pswd_use = bcrypt.hashpw(pswd, bcrypt.gensalt()).decode()
+        
+        data = request.json
+        if not data or "password" not in data:
+            return jsonify({"message": "Invalid request"}), 400
+
+        # Decode the received password
+        password = base64.b64decode(data["password"]).decode()
+
+        # Verify password
+        if bcrypt.checkpw(password.encode(), pswd_use.encode()):
+            cursor = name_collection.find()
+            data = list(cursor)
+            df = pd.DataFrame(data)
+
+            # Save to an in-memory file
+            output = io.BytesIO()
+            with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
+                df.to_excel(writer, sheet_name="Sheet1", index=False)
+            
+            output.seek(0)  # Move to the beginning of the file
+            
+            return send_file(
+                output,
+                as_attachment=True,
+                download_name="output.xlsx",
+                mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+
+        else:
+            return jsonify({"message": "Incorrect Password"}), 401
 
     return render_template("oops.html")
 
