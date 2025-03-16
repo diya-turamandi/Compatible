@@ -139,9 +139,9 @@ def calculate():
                             "percentage_rev": percentage_rev})
         
         if ftype == 'sign':
-            name_collection.insert_one({"Sign1": name1,
-                                        "Sign2": name2,
-                                        "Percentage": percentage_og})
+            # name_collection.insert_one({"Sign1": name1,
+            #                             "Sign2": name2,
+            #                             "Percentage": percentage_og})
             return jsonify({"percentage_og": percentage_og})
 
 
